@@ -24,6 +24,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     <preference name="AUTOMATIC_SCREEN_REPORTING_ENABLED" default="true" />
 
     <platform name="ios">
+        <resource-file src="GoogleService-Info.plist" target="GoogleService-Info.plist" />
+               
         <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
 
         <config-file target="config.xml" parent="/*">
