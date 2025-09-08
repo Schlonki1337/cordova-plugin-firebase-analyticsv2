@@ -46,6 +46,23 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             <string>$AUTOMATIC_SCREEN_REPORTING_ENABLED</string>
         </config-file>
 
+           <config-file target="*-Info.plist" parent="SKAdNetworkItems">
+               <array>
+                 <dict>
+                   <key>SKAdNetworkIdentifier</key>
+                   <string>cstr6suwn9.skadnetwork</string> <!-- Google Ads -->
+                 </dict>
+                 <dict>
+                   <key>SKAdNetworkIdentifier</key>
+                   <string>v9wttpbfk9.skadnetwork</string> <!-- Facebook -->
+                 </dict>
+                 <dict>
+                   <key>SKAdNetworkIdentifier</key>
+                   <string>n38lu8286q.skadnetwork</string> <!-- TikTok -->
+                 </dict>
+               </array>
+           </config-file>
+
         <header-file src="src/ios/FirebaseAnalyticsPlugin.h" />
         <source-file src="src/ios/FirebaseAnalyticsPlugin.m" />
 
