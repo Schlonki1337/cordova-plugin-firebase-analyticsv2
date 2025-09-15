@@ -1,21 +1,36 @@
 #!/usr/bin/env node
+
 const fs = require('fs');
 const path = require('path');
 
 module.exports = function(context) {
-  const iosPlatformPath = path.join(context.opts.projectRoot, 'platforms', 'ios');
-  const frameworks = ['FirebaseCore.framework', 'nanopb.framework'];
+    // Only run for iOS
+    if (context.opts.platforms.indexOf('ios') < 0) return;
 
-  frameworks.forEach(fw => {
-    const targetFolder = path.join(iosPlatformPath, 'Turtle Slap', 'Frameworks', fw);
-    if (fs.existsSync(targetFolder)) {
-      fs.copyFileSync(
-        path.join(context.opts.projectRoot, 'PrivacyInfo.xcprivacy'),
-        path.join(targetFolder, 'PrivacyInfo.xcprivacy')
-      );
-      console.log(`Copied PrivacyInfo.xcprivacy into ${fw}`);
-    } else {
-      console.warn(`Framework folder not found: ${fw}`);
-    }
-  });
+    const projectRoot = context.opts.projectRoot || process.cwd();
+    const iosPlatformPath = path.join(projectRoot, 'platforms', 'ios');
+
+    // List of frameworks that need the privacy file
+    const frameworks = [
+        'FirebaseCore.framework',
+        'nanopb.framework'
+    ];
+
+    frameworks.forEach(frameworkName => {
+        const frameworkPath = path.join(iosPlatformPath, 'Frameworks', frameworkName);
+        if (!fs.existsSync(frameworkPath)) {
+            console.warn(`Framework folder not found: ${frameworkPath}`);
+            return;
+        }
+
+        const srcFile = path.join(projectRoot, 'privacyfile'); // your privacy file in plugin root
+        const destFile = path.join(frameworkPath, 'privacyfile'); // destination inside framework
+
+        try {
+            fs.copyFileSync(srcFile, destFile);
+            console.log(`Copied privacy file to: ${destFile}`);
+        } catch (err) {
+            console.error(`Failed to copy privacy file to ${destFile}:`, err);
+        }
+    });
 };
