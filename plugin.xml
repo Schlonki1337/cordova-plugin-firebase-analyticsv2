@@ -25,7 +25,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" target="GoogleService-Info.plist" />
-        <resource-file src="PrivacyInfo.xcprivacy" target="Frameworks/FirebaseCore.framework/PrivacyInfo.xcprivacy" />
+        <resource-file src="PrivacyInfo2.xcprivacy" target="Frameworks/FirebaseCore.framework/PrivacyInfo.xcprivacy" />
+        <resource-file src="PrivacyInfo2.xcprivacy" target="Frameworks/nanopb.framework/PrivacyInfo.xcprivacy" />
         
         <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
         
@@ -111,9 +112,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             target-dir="src/by/chemerisuk/cordova/firebase/" />
     </platform>
 
-          <hooks>
-               <hook type="after_prepare" src="after_build_privacy.js" />
-          </hooks>
+
 
 
 </plugin>
