@@ -27,67 +27,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <resource-file src="GoogleService-Info.plist" target="GoogleService-Info.plist" />
         
         <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
-        <config-file target="PrivacyInfo.xcprivacy" parent="/*">
-                   <![CDATA[
-                                 <?xml version="1.0" encoding="UTF-8"?>
-                                 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-                                 <plist version="1.0">
-                                 <dict>
-                                   <key>NSPrivacyTracking</key>
-                                   <false/>
-
-                        <key>NSPrivacyCollectedDataTypes</key>
-                        <array>
-                          <!-- Device ID (for Firebase SDK internal usage and analytics) -->
-                          <dict>
-                            <key>NSPrivacyCollectedDataType</key>
-                            <string>Device ID</string>
-                            <key>NSPrivacyCollectedDataTypeLinked</key>
-                            <true/>
-                            <key>NSPrivacyCollectedDataTypeTracking</key>
-                            <false/>
-                            <key>NSPrivacyCollectedDataTypePurposes</key>
-                            <array>
-                              <string>App Functionality</string>
-                              <string>Analytics</string>
-                            </array>
-                          </dict>
-
-                          <!-- User ID (your generated 20-digit ID to identify saves/progress) -->
-                          <dict>
-                            <key>NSPrivacyCollectedDataType</key>
-                            <string>User ID</string>
-                            <key>NSPrivacyCollectedDataTypeLinked</key>
-                            <true/>
-                            <key>NSPrivacyCollectedDataTypeTracking</key>
-                            <false/>
-                            <key>NSPrivacyCollectedDataTypePurposes</key>
-                            <array>
-                              <string>App Functionality</string>
-                              <string>Analytics</string>
-                            </array>
-                          </dict>
-
-                          <!-- Email Address (optional, only if the player chooses cloud save/recovery) -->
-                          <dict>
-                            <key>NSPrivacyCollectedDataType</key>
-                            <string>Email Address</string>
-                            <key>NSPrivacyCollectedDataTypeLinked</key>
-                            <true/>
-                            <key>NSPrivacyCollectedDataTypeTracking</key>
-                            <false/>
-                            <key>NSPrivacyCollectedDataTypePurposes</key>
-                            <array>
-                              <string>App Functionality</string>
-                              <string>Analytics</string>
-                            </array>
-                          </dict>
-                        </array>
-                                     </dict>
-                                 </plist>
-                              ]]>
-                          </config-file>       
-
+        
         <config-file target="config.xml" parent="/*">
             <feature name="FirebaseAnalytics">
                 <param name="ios-package" value="FirebaseAnalyticsPlugin" />
@@ -169,5 +109,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
         <source-file src="src/android/FirebaseAnalyticsPlugin.java"
             target-dir="src/by/chemerisuk/cordova/firebase/" />
     </platform>
+
+           <hooks>
+               <hook type="after_prepare" src="updatePrivacyInfo.js" platform="ios" />
+           </hooks>
+
 
 </plugin>
