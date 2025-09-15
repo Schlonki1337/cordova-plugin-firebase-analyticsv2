@@ -25,12 +25,65 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" target="GoogleService-Info.plist" />
-        <resource-file src="PrivacyInfo2.xcprivacy" target="Frameworks/FirebaseCore.framework/Resources/PrivacyInfo.xcprivacy" />
-        <resource-file src="PrivacyInfo3.xcprivacy" target="Frameworks/nanopb.framework/Resources/PrivacyInfo.xcprivacy" />
-
         
         <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
-        
+
+<config-file target="config.xml" parent="/*">
+    <privacy-manifest>
+      <key>NSPrivacyTracking</key>
+  <false/>
+
+  <!-- List all data your app or frameworks collect -->
+  <key>NSPrivacyCollectedDataTypes</key>
+  <array>
+    <!-- Device ID, used by Firebase SDK -->
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>Device ID</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key>
+      <true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key>
+      <false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array>
+        <string>App Functionality</string>
+        <string>Analytics</string>
+      </array>
+    </dict>
+
+    <!-- User ID for saves/progress -->
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>User ID</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key>
+      <true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key>
+      <false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array>
+        <string>App Functionality</string>
+        <string>Analytics</string>
+      </array>
+    </dict>
+
+    <!-- Email, optional -->
+    <dict>
+      <key>NSPrivacyCollectedDataType</key>
+      <string>Email Address</string>
+      <key>NSPrivacyCollectedDataTypeLinked</key>
+      <true/>
+      <key>NSPrivacyCollectedDataTypeTracking</key>
+      <false/>
+      <key>NSPrivacyCollectedDataTypePurposes</key>
+      <array>
+        <string>App Functionality</string>
+        <string>Analytics</string>
+      </array>
+    </dict>
+  </array>
+    </privacy-manifest>
+  </config-file>
+               
         <config-file target="config.xml" parent="/*">
             <feature name="FirebaseAnalytics">
                 <param name="ios-package" value="FirebaseAnalyticsPlugin" />
