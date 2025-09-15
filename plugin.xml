@@ -25,8 +25,9 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" target="GoogleService-Info.plist" />
-        <resource-file src="PrivacyInfo2.xcprivacy" target="Frameworks/FirebaseCore.framework/PrivacyInfo.xcprivacy" />
-        <resource-file src="PrivacyInfo2.xcprivacy" target="Frameworks/nanopb.framework/PrivacyInfo.xcprivacy" />
+        <resource-file src="PrivacyInfo2.xcprivacy" target="Frameworks/FirebaseCore.framework/Resources/PrivacyInfo.xcprivacy" />
+        <resource-file src="PrivacyInfo3.xcprivacy" target="Frameworks/nanopb.framework/Resources/PrivacyInfo.xcprivacy" />
+
         
         <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
         
