@@ -10,7 +10,7 @@ module.exports = function(context) {
     const projectRoot = context.opts.projectRoot || process.cwd();
     const iosPlatformPath = path.join(projectRoot, 'platforms', 'ios');
 
-    // List of frameworks that need the privacy file
+    // List of frameworks that need the PrivacyInfo.xcprivacy
     const frameworks = [
         'FirebaseCore.framework',
         'nanopb.framework'
@@ -23,8 +23,8 @@ module.exports = function(context) {
             return;
         }
 
-        const srcFile = path.join(projectRoot, 'privacyfile'); // your privacy file in plugin root
-        const destFile = path.join(frameworkPath, 'privacyfile'); // destination inside framework
+        const srcFile = path.join(projectRoot, 'PrivacyInfo.xcprivacy'); // your privacy file in plugin root
+        const destFile = path.join(frameworkPath, 'PrivacyInfo.xcprivacy'); // destination inside framework
 
         try {
             fs.copyFileSync(srcFile, destFile);
