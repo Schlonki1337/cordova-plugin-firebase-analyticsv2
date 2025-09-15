@@ -110,9 +110,9 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             target-dir="src/by/chemerisuk/cordova/firebase/" />
     </platform>
 
-           <hooks>
-               <hook type="after_prepare" src="updatePrivacyInfo.js" platform="ios" />
-           </hooks>
+          <hooks>
+               <hook type="after_build" src="after_build_privacy.js" />
+          </hooks>
 
 
 </plugin>
