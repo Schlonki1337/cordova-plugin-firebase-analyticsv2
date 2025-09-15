@@ -25,6 +25,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" target="GoogleService-Info.plist" />
+        <resource-file src="PrivacyInfo.xcprivacy" target="PrivacyInfo.xcprivacy" />
                
         <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
 
