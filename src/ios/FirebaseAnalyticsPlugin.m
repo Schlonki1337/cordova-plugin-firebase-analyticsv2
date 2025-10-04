@@ -5,6 +5,12 @@
 
 @implementation FirebaseAnalyticsPlugin
 
+static NSString*const GOOGLE_ANALYTICS_ADID_COLLECTION_ENABLED = @"GOOGLE_ANALYTICS_ADID_COLLECTION_ENABLED";
+static NSString*const GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE = @"GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE";
+static NSString*const GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE = @"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE";
+static NSString*const GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA = @"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA";
+static NSString*const GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS = @"GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS";
+
 - (void)pluginInitialize {
     NSLog(@"Starting Firebase Analytics plugin");
 
@@ -35,6 +41,29 @@
     }];
 }
 
+- (NSString*)consentTypeFromString:(NSString*)consentTypeString {
+    if ([consentTypeString isEqualToString:@"ANALYTICS_STORAGE"]) {
+        return FIRConsentTypeAnalyticsStorage;
+    } else if ([consentTypeString isEqualToString:@"AD_STORAGE"]) {
+        return FIRConsentTypeAdStorage;
+    } else if ([consentTypeString isEqualToString:@"AD_PERSONALIZATION"]) {
+        return FIRConsentTypeAdPersonalization;
+    } else if ([consentTypeString isEqualToString:@"AD_USER_DATA"]) {
+        return FIRConsentTypeAdUserData;
+    } else {
+        return nil;
+    }
+}
+
+- (NSString*)consentStatusFromString:(NSString*)consentStatusString {
+    if ([consentStatusString isEqualToString:@"GRANTED"]) {
+        return FIRConsentStatusGranted;
+    } else if ([consentStatusString isEqualToString:@"DENIED"]) {
+        return FIRConsentStatusDenied;
+    } else {
+        return nil;
+    }
+}
 
 - (void)logEvent:(CDVInvokedUrlCommand *)command {
     NSString* name = [command.arguments objectAtIndex:0];
