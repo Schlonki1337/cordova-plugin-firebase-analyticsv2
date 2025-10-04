@@ -9,5 +9,6 @@
 - (void)setCurrentScreen:(CDVInvokedUrlCommand*)command;
 - (void)resetAnalyticsData:(CDVInvokedUrlCommand*)command;
 - (void)setDefaultEventParameters:(CDVInvokedUrlCommand*)command;
+- (void)setAnalyticsConsentMode:(CDVInvokedUrlCommand*)command;
 
 @end
