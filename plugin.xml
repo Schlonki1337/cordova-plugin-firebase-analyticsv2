@@ -49,14 +49,10 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
            <config-file parent="GADConsentSettings" target="*-Info.plist">
                <dict>
-                 <key>AD_STORAGE</key>
-                 <string>granted</string>
-                 <key>ANALYTICS_STORAGE</key>
-                 <string>granted</string>
-                 <key>AD_USER_DATA</key>
-                 <string>granted</string>
-                 <key>AD_PERSONALIZATION</key>
-                 <string>granted</string>
+                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE</key><true/>
+                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE</key><true/>
+                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA</key><true/>
+                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS</key><true/>
                </dict>
            </config-file>
            <config-file target="*-Info.plist" parent="SKAdNetworkItems">
