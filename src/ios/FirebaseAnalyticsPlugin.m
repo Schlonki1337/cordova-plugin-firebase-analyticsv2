@@ -13,6 +13,29 @@
     }
 }
 
+- (void)setAnalyticsConsentMode:(CDVInvokedUrlCommand*)command {
+    [self.commandDelegate runInBackground:^{
+        CDVPluginResult* pluginResult = nil;
+        NSDictionary* consentObject = [command.arguments objectAtIndex:0];
+
+        NSMutableDictionary* consentSettings = [[NSMutableDictionary alloc] init];
+
+        NSEnumerator *enumerator = [consentObject keyEnumerator];
+        id key;
+        while ((key = [enumerator nextObject])) {
+            NSString* consentType = [self consentTypeFromString:key];
+            NSString* consentStatus = [self consentStatusFromString:[consentObject objectForKey:key]];
+            [consentSettings setObject:consentStatus forKey:consentType];
+        }
+
+        [FIRAnalytics setConsent:consentSettings];
+
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }];
+}
+
+
 - (void)logEvent:(CDVInvokedUrlCommand *)command {
     NSString* name = [command.arguments objectAtIndex:0];
     NSDictionary* parameters = [command.arguments objectAtIndex:1];
