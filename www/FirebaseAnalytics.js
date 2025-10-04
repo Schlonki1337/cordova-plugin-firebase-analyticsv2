@@ -32,7 +32,7 @@ exports.AnalyticsConsentStatus = {
 };
 
 exports.setAnalyticsConsentMode = function(consent, success, error) {
-    exec(success, error, "FirebasePlugin", "setAnalyticsConsentMode", [consent]);
+    exec(success, error, PLUGIN_NAME, "setAnalyticsConsentMode", [consent]);
 };
 
 
