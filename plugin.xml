@@ -47,6 +47,18 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             <string>$AUTOMATIC_SCREEN_REPORTING_ENABLED</string>
         </config-file>
 
+           <config-file parent="GADConsentSettings" target="*-Info.plist">
+               <dict>
+                 <key>AD_STORAGE</key>
+                 <string>granted</string>
+                 <key>ANALYTICS_STORAGE</key>
+                 <string>granted</string>
+                 <key>AD_USER_DATA</key>
+                 <string>granted</string>
+                 <key>AD_PERSONALIZATION</key>
+                 <string>granted</string>
+               </dict>
+           </config-file>
            <config-file target="*-Info.plist" parent="SKAdNetworkItems">
                <array>
                  <dict>
