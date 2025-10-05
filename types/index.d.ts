@@ -20,22 +20,3 @@ export interface IChannelOptions {
     usage?: number
     streamType?: number
 }
-
-export interface FirebasePlugin {
-    AnalyticsConsentMode: {
-        ANALYTICS_STORAGE: string,
-        AD_STORAGE: string,
-        AD_USER_DATA: string,
-        AD_PERSONALIZATION: string
-    }
-    AnalyticsConsentStatus: {
-        GRANTED: string,
-        DENIED: string
-    }
-    setAnalyticsConsentMode(
-        consent: object,
-        success: (info: object) => void,
-        error: (err: string) => void
-    ): void
-    
-}
