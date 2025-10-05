@@ -22,11 +22,11 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
     <preference name="ANALYTICS_COLLECTION_ENABLED" default="false" />
     <preference name="AUTOMATIC_SCREEN_REPORTING_ENABLED" default="true" />
-    <preference name="GOOGLE_ANALYTICS_ADID_COLLECTION_ENABLED" default="true" />
-    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE" default="true" />
-    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE" default="true" />
-    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA" default="true" />
-    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS" default="true" />
+    <preference name="GOOGLE_ANALYTICS_ADID_COLLECTION_ENABLED" default="false" />
+    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE" default="false" />
+    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE" default="false" />
+    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA" default="false" />
+    <preference name="GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS" default="false" />
 
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" target="GoogleService-Info.plist" />
@@ -55,9 +55,9 @@ xmlns:android="http://schemas.android.com/apk/res/android"
            <config-file parent="GADConsentSettings" target="*-Info.plist">
                <dict>
                  <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_ANALYTICS_STORAGE</key><true/>
-                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE</key><true/>
-                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA</key><true/>
-                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS</key><true/>
+                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_STORAGE</key><false/>
+                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_USER_DATA</key><false/>
+                 <key>GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS</key><false/>
                </dict>
            </config-file>
            <config-file target="*-Info.plist" parent="SKAdNetworkItems">
