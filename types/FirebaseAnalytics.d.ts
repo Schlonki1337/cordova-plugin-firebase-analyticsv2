@@ -1,3 +1,21 @@
+export const AnalyticsConsentMode: {
+    ANALYTICS_STORAGE: string;
+    AD_STORAGE: string;
+    AD_USER_DATA: string;
+    AD_PERSONALIZATION: string;
+};
+
+export const AnalyticsConsentStatus: {
+    GRANTED: string;
+    DENIED: string;
+};
+
+export function setAnalyticsConsentMode(
+    consent: object,
+    success: (info: object) => void,
+    error: (err: string) => void
+): void;
+
 /**
  * Logs an app event.
  *
