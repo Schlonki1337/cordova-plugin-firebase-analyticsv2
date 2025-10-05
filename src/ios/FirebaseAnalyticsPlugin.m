@@ -26,20 +26,35 @@ static NSString*const GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS 
 
         NSMutableDictionary* consentSettings = [[NSMutableDictionary alloc] init];
 
-        NSEnumerator *enumerator = [consentObject keyEnumerator];
-        id key;
-        while ((key = [enumerator nextObject])) {
-            NSString* consentType = [self consentTypeFromString:key];
-            NSString* consentStatus = [self consentStatusFromString:[consentObject objectForKey:key]];
-            [consentSettings setObject:consentStatus forKey:consentType];
+        @try {
+            // Build consent dictionary
+            NSEnumerator *enumerator = [consentObject keyEnumerator];
+            id key;
+            while ((key = [enumerator nextObject])) {
+                NSString* consentType = [self consentTypeFromString:key];
+                NSString* consentStatus = [self consentStatusFromString:[consentObject objectForKey:key]];
+
+                if (consentType != nil && consentStatus != nil) {
+                    [consentSettings setObject:consentStatus forKey:consentType];
+                } else {
+                    NSLog(@"[FirebaseAnalyticsPlugin] Invalid consent key or status: %@ = %@", key, [consentObject objectForKey:key]);
+                }
+            }
+
+            // Apply consent to Firebase
+            [FIRAnalytics setConsent:consentSettings];
+
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Consent applied successfully"];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"[FirebaseAnalyticsPlugin] setAnalyticsConsentMode exception: %@", exception.reason);
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:exception.reason];
         }
 
-        [FIRAnalytics setConsent:consentSettings];
-
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
 }
+
 
 - (NSString*)consentTypeFromString:(NSString*)consentTypeString {
     if ([consentTypeString isEqualToString:@"ANALYTICS_STORAGE"]) {
