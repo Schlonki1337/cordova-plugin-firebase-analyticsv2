@@ -10,11 +10,13 @@ export const AnalyticsConsentStatus: {
     DENIED: string;
 };
 
-export function setAnalyticsConsentMode(
-    consent: object,
-    success: (info: object) => void,
-    error: (err: string) => void
-): void;
+/**
+ * Sets the user's analytics consent mode.
+ * @param {object} consent - Map of consent types and statuses.
+ * @returns {Promise<void>} Resolves when consent is set.
+ */
+export function setAnalyticsConsentMode(consent: Record<string, string>): Promise<void>;
+
 
 /**
  * Logs an app event.
