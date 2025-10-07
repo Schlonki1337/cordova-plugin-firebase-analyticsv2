@@ -1,5 +1,5 @@
 # scripts/podhooks.rb
-Pod::HooksManager.register('cordova-plugin-firebase-firestore', :post_install) do |installer|
+Pod::HooksManager.register('cordova-plugin-firebase-analytics', :post_install) do |installer|
   installer.pods_project.targets.each do |target|
     # Force minimum deployment target to iOS 12
     target.build_configurations.each do |config|
