@@ -2,6 +2,69 @@ var PLUGIN_NAME = "FirebaseAnalytics";
 // @ts-ignore
 var exec = require("cordova/exec");
 
+var onAuthStateChangeCallback = function(){};
+
+var handleAuthErrorResult = function(errorCallback){
+    return function(result){
+        var errorMessage, secondFactors;
+        if(typeof result === 'object'){
+            errorMessage = result.errorMessage;
+            secondFactors = result.secondFactors;
+        }else{
+            errorMessage = result;
+        }
+        errorCallback(errorMessage, secondFactors);
+    }
+};
+
+exports.fetchDocumentInFirestoreCollection = function (documentId, collection, success, error) {
+    if(typeof documentId !== 'string' && typeof documentId !== 'number') return error("'documentId' must be a string or number specifying the Firestore document identifier");
+    if(typeof collection !== 'string') return error("'collection' must be a string specifying the Firestore collection name");
+
+    exec(success, error, "FirebasePlugin", "fetchDocumentInFirestoreCollection", [documentId.toString(), collection]);
+};
+
+exports._onAuthStateChange = function(userSignedIn){
+    onAuthStateChangeCallback(userSignedIn);
+};
+
+exports.createUserWithEmailAndPassword = function (email, password, success, error) {
+    exec(success, handleAuthErrorResult(error), "FirebasePlugin", "createUserWithEmailAndPassword", [email, password]);
+};
+
+exports.signInUserWithEmailAndPassword = function (email, password, success, error) {
+    exec(success, handleAuthErrorResult(error), "FirebasePlugin", "signInUserWithEmailAndPassword", [email, password]);
+};
+
+exports.signInWithCredential = function (credential, success, error) {
+    if(typeof credential !== 'object') return error("'credential' must be an object");
+    exec(success, handleAuthErrorResult(error), "FirebasePlugin", "signInWithCredential", [credential]);
+};
+
+exports.isUserSignedIn = function (success, error) {
+    exec(ensureBooleanFn(success), error, "FirebasePlugin", "isUserSignedIn", []);
+};
+
+exports.signOutUser = function (success, error) {
+    exec(ensureBooleanFn(success), error, "FirebasePlugin", "signOutUser", []);
+};
+
+exports.setDocumentInFirestoreCollection = function (documentId, document, collection, timestamp, success, error) {
+    if(typeof documentId !== 'string' && typeof documentId !== 'number') return error("'documentId' must be a string or number specifying the Firestore document identifier");
+    if(typeof collection !== 'string') return error("'collection' must be a string specifying the Firestore collection name");
+    if(typeof document !== 'object' || typeof document.length === 'number') return error("'document' must be an object specifying record data");
+
+    if (typeof timestamp !== "boolean" && typeof error === "undefined") {
+        error = success;
+        success = timestamp;
+        timestamp = false;
+    }
+
+    exec(success, error, "FirebasePlugin", "setDocumentInFirestoreCollection", [documentId.toString(), document, collection, timestamp || false]);
+};
+
+
+
 exports.logEvent =
 /**
  * Logs an app event.
