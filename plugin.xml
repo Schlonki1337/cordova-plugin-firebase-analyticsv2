@@ -126,6 +126,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     </platform>
 
 
-<hook type="after_pod_install" src="scripts/podhooks.rb" />
+<hook type="after_pod_install" src="src/podhooks.rb" />
 
 </plugin>
