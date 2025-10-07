@@ -86,7 +86,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
             </config>
             <pods use-frameworks="true">
                 <pod name="Firebase/Analytics" spec="$IOS_FIREBASE_POD_VERSION" />
-                <pod name="Firebase/Firestore" spec="9.6.0" />
+                <pod name="Firebase/Firestore" spec="$IOS_FIREBASE_POD_VERSION" />
             </pods>
         </podspec>
     </platform>
@@ -126,6 +126,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     </platform>
 
 
-
+<hook type="after_pod_install" src="scripts/podhooks.rb" />
 
 </plugin>
