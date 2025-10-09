@@ -2,7 +2,6 @@
 
 @import FirebaseCore;
 @import FirebaseAnalytics;
-@import FirebaseAuth;
 
 @implementation FirebaseAnalyticsPlugin
 
